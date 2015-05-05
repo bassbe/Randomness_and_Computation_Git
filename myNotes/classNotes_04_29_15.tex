@@ -34,7 +34,18 @@
 \renewcommand\headrulewidth{0.4pt}
 \renewcommand\footrulewidth{0.4pt}
 
+
 \setlength\parindent{0pt}
+
+%make a line command available
+%\noindent\rule{8cm}{0.4pt} // will make a  line 8cm long
+%\noindent\makebox[\linewidth]{\rule{\paperwidth}{0.4pt}}
+
+\newcommand{\RN}[1]{%
+  \textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+%\RN{<input number>}
+
 
 %
 % Create Problem Sections
@@ -87,11 +98,11 @@
 %
 
 \newcommand{\hmwkTitle}{Randomness and Computation}
-\newcommand{\hmwkDueDate}{Date}
+\newcommand{\hmwkDueDate}{29 April 2015}
 \newcommand{\hmwkClass}{}
 \newcommand{\hmwkClassTime}{}
 \newcommand{\hmwkClassInstructor}{Professor Jose Bento}
-\newcommand{\hmwkAuthorName}{Benjamin Bass}
+\newcommand{\hmwkAuthorName}{Benjamin Bass \& Roseanna Chu}
 
 %
 % Title Page
@@ -99,8 +110,8 @@
 
 \title{
     \vspace{2in}
-    \textmd{\textbf{\hmwkClass\ \hmwkTitle}}\\
-    \normalsize\vspace{0.1in}\small{Lecture\ from:\ \hmwkDueDate}\\
+    \textmd{\textbf{\hmwkClass\ \hmwkTitle}}                                  \\
+    \normalsize\vspace{0.1in}\small{Lecture\ from:\ \hmwkDueDate}             \\
     \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ \hmwkClassTime}}
     \vspace{3in}
 }
@@ -140,8 +151,158 @@
 \maketitle
     
 \pagebreak
+We have
+$
+\mathbb{E}(X|Y) = z?                                                          \\
+\text{ if } 
+\mathbb{E}(|x|) < \infty
+$
 
-text
+\begin{enumerate}
+\item $\mathbb{F}_{z} \subset \mathbb{F}_{y}$
+\item $\forall A \in \mathbb{F}_{Y}, \mathbb{E}(\RN{2}_{A}z) = \mathbb{E}(\RN{2}_{A}X)$
+\end{enumerate}
+Note, that $$\mathbb{E}(X|A) = \dfrac{\mathbb{E}(x\RN{2}_{A})}{\mathbb{P}(A)}
+$$
+
+\noindent\rule{15cm}{0.4pt}%-----------------------------------------------------
+
+Compatible with the previous definition, when y is discrete. Where 
+$
+\mathbb{E}(|X|) < \infty \text { then, } (w) = \mathbb{E}(X|\{y = y_{i}\}) 
+\text{ and } y_{i} : y(w) = y_{i}
+$
+
+\noindent\rule{15cm}{0.4pt}%-----------------------------------------------------
+
+\begin{itemize}
+\item $ \mathbb{E}(X+Y|Z) = \mathbb{E}(X|Z) + \mathbb{E}(Y|Z)  $
+\item $ \mathbb{E}(aX|Y) = a\mathbb{E}(X|Y)                    $
+\item $ \mathbb{E}(P(y)X|Y) = f((y)\mathbb{E}(X|Y))            $
+\item $ \mathbb{E}(\mathbb{E}(X|Y)) = \mathbb{E}(X)            $
+\end{itemize}
+
+\noindent\rule{15cm}{0.4pt}%-----------------------------------------------------
+
+\begin{equation*}
+  \begin{split}
+    \mathbb{E}(X) &= \mathbb{P}(y = y_{1})\mathbb{E}(X|Y=Y_{1})               \\
+                  &= + \mathbb{P}(y = y_{2})\mathbb{E}(X|Y=Y_{2})             \\
+                  &= + \mathbb{P}(y = y_{3})\mathbb{E}(X|Y=Y_{3})             \\
+                  &= + ...                                                    \\
+  \end{split}
+\end{equation*}
+
+\noindent\rule{15cm}{0.4pt}%-----------------------------------------------------
+
+x If x8y are jointly continuous.                                              \\
+$f_{y}(y \neq 0)$ and if $\mathbb{E}(|X|) < \infty$, then 
+$\mathbb{E}(X|Y) = G(y)$                                                      \\
+
+$$G(y) = \int_{-\infty}^{\infty} x\dfrac{f_{xy}(x,y)}{f_{y}(y)} dx$$
+
+which we arrived at from
+
+\begin{equation*}
+  \begin{split}
+    \mathbb{P}(Y \in A) &= 
+    \mathbb{P}\big( (x,y) \in R \times A\big)                                 \\
+                        &= 
+    \int_{-\infty}^{\infty}\int_{A}^{} f_{xy}(x,y) dydx                       \\
+    f_{y}(y)            &=
+    \int_{-\infty}^{\infty} f_{xy}(x,y) dx                                    \\
+  \end{split}
+\end{equation*}
+
+\noindent\rule{15cm}{0.4pt}%-----------------------------------------------------
+
+$\underline{Exercise:}$                                                       \\
+\begin{displaymath}
+   f_{xy}(x,y) = \left\{
+     \begin{array}{lr}
+       k(x+y) & : x,y \in [0,1]\\
+       0 & : otherwise
+     \end{array}
+   \right.
+\end{displaymath} 
+$\underline{Answer:}$
+From the first property, we use the theorem:                                  \\
+
+Th: if $ F_{z} \subset F_{y}$\\
+then $z = f(y)$ for some measurable function $f$.\\
+\\
+%All questions that we can ask about $z$ are contained in $f(y)$, then there exists a mapping between $$\\
+\\
+If the questions that $z$ generates are contained in $f(y)$, then points mapped previously to the arrival space  may be mapped to the same point.\\
+\begin{enumerate}
+\item This implies $ \mathbb{E}(X|Y) = G(y)$
+\item if true for $\forall a \in F_{y}$ then let 
+$A = \{ y \in [0,a]\} \in F_{y}$ then $\mathbb{E}(\RN{2}_{A}z)
+ = \mathbb{E}(\RN{2}_{A}x)$ must be true and equal to 
+$$\mathbb{E}(\RN{2}_{Y \in [0,x]}G(y)) = \mathbb{E}(\RN{2}_{Y\in[0,x]}X)$$    \\
+\end{enumerate}
+
+
+\noindent\rule{15cm}{0.4pt}%-----------------------------------------------------
+
+Now we can start doing some calculations. Lets calculate $f_{y}$.             \\
+$$f_{y}(y) = \int_{-\infty}^{\infty} f_{xy}(x,y) dx =  
+ k(\frac{1}{2} + y), y \in [0,1]$$                                            \\
+\begin{equation*}
+  \begin{split}
+    \int_{-\infty}^{\infty} \RN{2}_{y} \in [a,a] \cdot G(y)f_{y}(y)dy 
+     &= \int_{0}^{x} G(y) k(\frac{1}{2} +y) dy
+  \end{split}
+\end{equation*}
+This is the same an important equivalence:
+$$ \mathbb{E}(\RN{2}_{A}y\in[0,x] G(y)) 
+= \mathbb{E}(\RN{2}_{y\in[0,a]}x)$$                                \\
+
+is equivalent to:
+
+$$\int_{-\infty}^{\infty}\int_{-\infty}^{\infty} \RN{2}_{y\in [0,a]} xf_{xy}(x,y)dxdy 
+= \int_{0a}^{a}\int_{0}^{1} xk(x+y) dxdy$$\\
+
+Thus:
+
+$$Eq\RN{1} = Eq\RN{2} \forall a \implies \frac{d}{da}\RN{1} = \frac{d}{da}\RN{2}$$
+
+\begin{equation*}
+  \begin{split}
+    G(y) k(\frac{1'}{2} + y) &= \int_{0}^{1} k(x+y) dx                        \\
+                             &= k(\frac{1}{3} + \frac{1}{2}y)
+  \end{split}
+\end{equation*}
+
+From which we can conclude:                                                   \\
+\\
+\begin{equation*}
+  \begin{split}
+G(y) &= \dfrac{\frac{1}{3} + \frac{1}{2}y}{\frac{1}{2} + y}                   \\
+\mathbb{E}(X|Y)     &= \dfrac{\frac{1}{3} + \frac{1}{2}y}{\frac{1}{2} + y}
+  \end{split}
+\end{equation*}
+
+
+
+\noindent\rule{15cm}{0.4pt}%-----------------------------------------------------
+
+If we use the formula we have, we can check the results we have.\\
+\\
+Formula: \\
+$$G(y) = \int_{-\infty}^{\infty} \dfrac{f_{xy}(x,y)}{f_{y}(y)} dx$$
+\\
+Confirm results:\\
+\\
+\begin{equation*}
+  \begin{split}
+    G(y) &= \int_{-\infty}^{\infty} x\dfrac{f_{xy}(x,y)}{f_{y}(y)} dx          \\
+         &= \dfrac{\int_{0}^{} k(x+y)xdx}{\int_{-\infty}^{\infty} kx(x+y) dx} \\
+         &= \dfrac{\frac{1}{3} + \frac{1}{2}y}{\frac{1}{2} + y}            \\
+  \end{split}
+\end{equation*}
+
+\noindent\rule{15cm}{0.4pt}%-----------------------------------------------------
 
 \end{document}
 
